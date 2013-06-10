@@ -16,7 +16,7 @@ Improved QFrame:
 __author__ = "lory"
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QFrame, QGraphicsOpacityEffect, QBitmap, QPixmap
+from PyQt4.QtGui import QFrame, QGraphicsOpacityEffect, QBitmap, QPixmap, QGraphicsDropShadowEffect, QGraphicsEffect, QColor
 from PyQt4.QtCore import QPropertyAnimation, QEasingCurve, QString, QTimer, QRect, QPoint
 
 from enum import Enum
@@ -51,6 +51,14 @@ class CImprovedPanel(QFrame):
         self.__pmap = QPixmap(self.size())
         self.__pmap_fname = ""
         self.__show_mask_preview = False
+
+        #SHADOW
+        self.__shadow_effect = QGraphicsDropShadowEffect()
+        self.__shadow_effect.setXOffset(3)
+        self.__shadow_effect.setYOffset(3)
+        self.__shadow_effect.setBlurRadius(8.0)
+        self.__shadow_effect.setColor(QColor(58, 58, 58, 180))
+        self._shadow_visible = False
 
     ##FUNZIONI PER FADING
     def fadeIn(self):
@@ -327,3 +335,16 @@ class CImprovedPanel(QFrame):
         self.__pmap.scaled(self.size())
         if self.__show_mask_preview:
             self.setMask(QBitmap(self.__pmap.createHeuristicMask().scaled(self.size())))
+
+#FUNZIONI PER SHADOW
+
+    def getShadow(self):
+        return self._shadow_visible
+
+    def setShadow(self, bool):
+        self.setGraphicsEffect(self.__shadow_effect)
+        self._shadow_visible = bool
+        self.__shadow_effect.setEnabled(bool)
+
+    shadow = QtCore.pyqtProperty("bool", fget=getShadow, fset=setShadow)
+
