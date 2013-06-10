@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="img">
+    <file>red_dot.png</file>
+    <file>star_pmap.png</file>
+    <file>alarm.png</file>
+  </qresource>
+</RCC>

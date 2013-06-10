@@ -1,0 +1,25 @@
+<RCC>
+  <qresource prefix="images">
+    <file>sliders/knob_lblue.png</file>
+    <file>sliders/fill_horizontal.png</file>
+    <file>desingerIcons/light_blue_radio.png</file>
+    <file>desingerIcons/improved_button.png</file>
+    <file>backgrounds/indicator.png</file>
+    <file>desingerIcons/light_blue_switch.png</file>
+    <file>desingerIcons/green_switch.png</file>
+    <file>sliders/fill_1_vertical.png</file>
+    <file>sliders/shape_1_vertical.png</file>
+    <file>sliders/fill_1.png</file>
+    <file>sliders/shape_1.png</file>
+    <file>sliders/white_knob_1.png</file>
+    <file>radiobuttons/radio_off_1.png</file>
+    <file>radiobuttons/radio_on_1.png</file>
+    <file>switches/off_black_2.png</file>
+    <file>switches/on_lblue_1.png</file>
+    <file>switches/white_round_knob_2.png</file>
+    <file>switches/on_green_1.png</file>
+    <file>switches/off_red_1.png</file>
+    <file>switches/white_round_knob_3.png</file>
+    <file>switches/white_round_knob_1.png</file>
+  </qresource>
+</RCC>
