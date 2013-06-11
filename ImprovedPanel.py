@@ -218,10 +218,10 @@ class CImprovedPanel(QFrame):
         self.moveTo(dest_x, dest_y)
 
     def showFromTop(self):
-        """ Panel hides sliding from the top. The slide amount is equal to his height - 5px.
+        """ Panel shows sliding from the top. The slide amount is equal to his height - 5px.
         """
         dest_x = self.geometry().x()
-        dest_y = self.geometry().y() + self.height() + 5
+        dest_y = self.geometry().y() + self.height() - 5
         self.moveTo(dest_x, dest_y)
 
     def hideBottom(self):
