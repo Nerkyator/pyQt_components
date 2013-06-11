@@ -10,6 +10,7 @@ Improved QFrame:
 - Resize to position (and come back to original one)
 - Fold in 2 directions (QT limit of resizing)
 - PixmapMask
+- Shadow Effect
 
 """
 
@@ -53,12 +54,18 @@ class CImprovedPanel(QFrame):
         self.__show_mask_preview = False
 
         #SHADOW
+        self.__shadow_Xoffset = 3.0 #default value
+        self.__shadow_Yoffset = 3.0 #default value
+        self.__shadow_blur_radius = 8.0 #default value
+        self.__shadow_color = QColor(38,38,38,150) #default value
+
         self.__shadow_effect = QGraphicsDropShadowEffect()
-        self.__shadow_effect.setXOffset(3)
-        self.__shadow_effect.setYOffset(3)
-        self.__shadow_effect.setBlurRadius(8.0)
-        self.__shadow_effect.setColor(QColor(58, 58, 58, 180))
+        self.__shadow_effect.setXOffset(self.__shadow_Xoffset)
+        self.__shadow_effect.setYOffset(self.__shadow_Yoffset)
+        self.__shadow_effect.setBlurRadius(self.__shadow_blur_radius)
+        self.__shadow_effect.setColor(self.__shadow_color)
         self._shadow_visible = False
+
 
     ##FUNZIONI PER FADING
     def fadeIn(self):
@@ -336,7 +343,7 @@ class CImprovedPanel(QFrame):
         if self.__show_mask_preview:
             self.setMask(QBitmap(self.__pmap.createHeuristicMask().scaled(self.size())))
 
-#FUNZIONI PER SHADOW
+        #FUNZIONI PER SHADOW
 
     def getShadow(self):
         return self._shadow_visible
@@ -347,4 +354,60 @@ class CImprovedPanel(QFrame):
         self.__shadow_effect.setEnabled(bool)
 
     shadow = QtCore.pyqtProperty("bool", fget=getShadow, fset=setShadow)
+
+    def setShadowXOffset(self, value):
+        """ Sets shadow offset on X.
+        @param value: offset
+        @type value: float
+        """
+        self.__shadow_Xoffset = value
+        self.__shadow_effect.setXOffset(self.__shadow_Xoffset)
+
+    def getShadowXOffset(self):
+        return self.__shadow_Xoffset
+
+    shadowXOffset = QtCore.pyqtProperty("double", getShadowXOffset, setShadowXOffset)
+
+    def setShadowYOffset(self, value):
+        """ Sets shadow offset on Y.
+        @param value: offset
+        @type value: float
+        """
+        self.__shadow_Yoffset = value
+        self.__shadow_effect.setYOffset(self.__shadow_Yoffset)
+
+    def getShadowYOffset(self):
+        return self.__shadow_Yoffset
+
+    shadowYOffset = QtCore.pyqtProperty("double", getShadowYOffset, setShadowYOffset)
+
+
+    def setShadowBlur(self, value):
+        """ Sets blurred effect on item's shadow.
+        @param value: coefficient
+        @type value: float
+        """
+        self.__shadow_blur_radius = value
+        self.__shadow_effect.setBlurRadius(self.__shadow_blur_radius)
+
+    def getShadowBlur(self):
+        return self.__shadow_blur_radius
+
+
+    shadowBlur = QtCore.pyqtProperty("double", getShadowBlur, setShadowBlur)
+
+
+    def setShadowColor(self, color):
+        """ Sets shadow's color.
+        @param color: value
+        @type color: color
+        """
+        self.__shadow_color = color
+        self.__shadow_effect.setColor(self.__shadow_color)
+
+    def getShadowColor(self):
+        return self.__shadow_color
+
+        #shadowColor = QtCore.pyqtProperty("color", getShadowColor, setShadowColor)
+
 
