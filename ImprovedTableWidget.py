@@ -17,27 +17,23 @@ class CImprovedTableWidget(QTableWidget):
     def __init__(self, parent=None):
         QTableWidget.__init__(self, parent)
 
-        self.__selected_colum = 0
+        self.__column_width_list = []
 
-    def __selectColumn(self, col_number):
-        self.__selected_colum = col_number
-        self.getSelectedColumnWidth()
-
-    def __getSelectedColumn(self):
-        return self.__selected_colum
-
-    selectedColumn = QtCore.pyqtProperty("int", fget=__getSelectedColumn, fset=__selectColumn)
-
-    def setSelectedColumnWidth(self, value):
+    def setColumnsWidth(self, columns_list):
         """ Sets column width.
         @param value: width
         @type value: int
         """
-        self.setColumnWidth(self.__selected_colum, value)
+        self.__column_width_list = list(columns_list.split(','))
+        self.setColumnCount(len(self.__column_width_list))
+        for i in range(0, len(columns_list)):
+            self.setColumnWidth(i, int(self.__column_width_list[i]))
 
-    def getSelectedColumnWidth(self):
-        return self.columnWidth(self.__selected_colum)
+
+    def getColumnsWidth(self):
+        n_str = ",".join(map(str, self.__column_width_list))
+        return QtCore.QString(n_str)
 
 
-    setWidth = QtCore.pyqtProperty("int", fget=getSelectedColumnWidth, fset=setSelectedColumnWidth)
+    setWidths = QtCore.pyqtProperty("QString", fget=getColumnsWidth, fset=setColumnsWidth)
 
