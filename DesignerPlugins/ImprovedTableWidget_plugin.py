@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Plugin QT Designer per ImprovedLabel.py
+Plugin QT Designer per ImprovedTableWidget.py
 """
 
 
@@ -13,7 +13,7 @@ from ImprovedTableWidget import CImprovedTableWidget
 
 __all__ = ['CImprovedTableWidget']
 
-class ImprovedLabel_plugin(QPyDesignerCustomWidgetPlugin):
+class ImprovedTableWidget_plugin(QPyDesignerCustomWidgetPlugin):
 
     def __init__(self, parent=None):
         QPyDesignerCustomWidgetPlugin.__init__(self)
